@@ -1,27 +1,14 @@
-import Navbar from "./components/Navbar";
-import Hero from "./components/Hero";
-import Features from "./components/Features";
-import Works from "./components/Works";
-import About from "./components/About";
-import Footer from "./components/Footer";
-
-
-
 import { Routes, Route } from "react-router-dom";
+import Landing from "./pages/Landing";
+import Auth from "./pages/Auth";
 
 function App() {
   return (
-    <>
-      <Navbar />
-      <Hero />
-      <Features />
-      <Works />
-      <About />
-      <Footer />
-
-
-    </>
-  );
+    <Routes>
+      <Route path='/' element={<Landing />} />
+      <Route path='signUp' element={<Auth />} />
+    </Routes>
+  )
 }
 
 export default App;

@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 
 
 
+
 function Navbar() {
     const [isOpen, setIsOpen] = useState(false);
 
@@ -33,10 +34,12 @@ function Navbar() {
                 </div>
 
                 {/* Desktop Button */}
-                <a href="#" className="hidden sm:block px-7 py-2 rounded-full bg-black text-white hover:scale-105 transition border-1 border-transparent
+                <Link
+                    to="/signUp"
+                    className="hidden sm:block px-7 py-2 rounded-full bg-black text-white hover:scale-105 transition border-1 border-transparent
                          hover:border-white">
                     Sign Up
-                </a>
+                </Link>
 
                 {/* Burger Button (mobile only) */}
                 <button
@@ -78,10 +81,12 @@ function Navbar() {
 
                     </div>
                     <div>
-                        <a href="#" className="block px-2 py-2 my-4 ml-15 mr-15 rounded-full bg-black text-center text-white hover:scale-105 transition border-1 border-transparent
+                        <Link
+                            to="signUp"
+                            className="block px-2 py-2 my-4 ml-15 mr-15 rounded-full bg-black text-center text-white hover:scale-105 transition border-1 border-transparent
                          hover:border-white">
                             Sign Up
-                        </a>
+                        </Link>
                     </div>
 
 
