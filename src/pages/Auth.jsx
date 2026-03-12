@@ -1,15 +1,16 @@
-import SignupForm from "../components/SignupForm";
-// import LoginForm from "../components/LoginForm";
+import { useState } from "react";
+// import SignupForm from "../components/SignupForm";
+import LoginForm from "../components/LoginForm";
 
 const Auth = () => {
+
+
     return (
+        <div>
 
-        <div >
-            <SignupForm />
-            {/* <LoginForm /> */}
+            <LoginForm />
+            {/* <SignupForm /> */}
         </div>
-
-
     );
 };
 

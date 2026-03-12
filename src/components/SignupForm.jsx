@@ -11,12 +11,12 @@ const SignupForm = () => {
             <div className='max-w-2xl mx-auto lg:max-w-5xl min-h-screen flex items-center justify-center '>
 
                 {/* Card */}
-                <div className='bg-purple-200  rounded-b-[95px] rounded-2xl shadow-lg flex flex-col sm:flex-row  w-[85%] max-w-[850px] sm:w-[90%] max-w-[900px] sm:h-[480px]'>
+                <div className=' bg-purple-200 rounded-t-[95px]  rounded-b-[95px] shadow-lg flex flex-col sm:flex-row  w-[85%] max-w-[850px] sm:w-[90%] max-w-[900px] sm:h-[480px]'>
 
                     {/* Left panel */}
-                    <div className='w-full sm:w-2/4 flex flex-col gap-3 sm:gap-4  sm:ml-4 p-5 sm:p-4  order-2 sm:order-1'>
+                    <div className='w-full sm:w-2/4 flex flex-col gap-3 sm:gap-4  sm:ml-4 p-5 sm:p-4 rounded-tl-[95px] '>
 
-                        <h1 className='font-bold text-2xl text-center mb-2'>
+                        <h1 className='font-bold text-2xl text-center mb-2 sm:pt-6'>
                             Registration
                         </h1>
 
@@ -62,7 +62,7 @@ const SignupForm = () => {
                         </p>
 
                         <div className='flex justify-center gap-6 '>
-                            <a className='border border-black rounded-lg py-3 px-4'>
+                            <a className='p-3 border border-gray-100 rounded-xl shadow-sm hover:shadow-md hover:bg-gray-50 transition-all text-gray-600 '>
                                 <FaGoogle />
                             </a>
                             <a className='border border-black rounded-lg py-3 px-4'>
@@ -73,7 +73,7 @@ const SignupForm = () => {
                     </div>
 
                     {/* Right panel */}
-                    <div className='bg-purple-600 text-white flex flex-col items-center justify-center w-full sm:w-2/4 sm:gap-2  py-2  rounded-b-[95px] sm:rounded-l-[95px] sm:rounded-r-2xl  order-1 sm:order-2'>
+                    <div className='bg-purple-600 text-white flex flex-col items-center justify-center w-full sm:w-2/4 sm:gap-2  py-2 rounded-b-[95px] rounded-t-[95px] sm:rounded-l-[95px] sm:rounded-r-2xl  '>
 
                         <h1 className='text-2xl lg:text-3xl font-bold mt-2 sm:mt-0'>
                             Welcome Back!
