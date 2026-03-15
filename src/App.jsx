@@ -1,25 +1,19 @@
-// import { Routes, Route } from "react-router-dom";
-// import Landing from "./pages/Landing";
-// import Auth from "./pages/Auth";
-
-// function App() {
-//   return (
-//     <Routes>
-//       <Route path='/' element={<Landing />} />
-//       <Route path='signUp' element={<Auth />} />
-//     </Routes>
-//   )
-// }
-
-// export default App;
-
-import AuthPage from './components/AuthPage';
+import { Routes, Route } from "react-router-dom";
+import Landing from "./pages/Landing";
+import Auth from "./pages/Auth";
+import CandidateD from "./pages/Candidate/CandidateD";
 
 function App() {
   return (
-    <div className="App">
-      <AuthPage />
-    </div>
+    <Routes>
+
+      <Route path="/" element={<Landing />} />
+
+      <Route path="/auth" element={<Auth />} />
+
+      <Route path="/candidate" element={<CandidateD />} />
+
+    </Routes>
   );
 }
 

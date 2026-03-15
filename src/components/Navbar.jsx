@@ -35,7 +35,7 @@ function Navbar() {
 
                 {/* Desktop Button */}
                 <Link
-                    to="/signUp"
+                    to="/auth"
                     className="hidden sm:block px-7 py-2 rounded-full bg-black text-white hover:scale-105 transition border-1 border-transparent
                          hover:border-white">
                     Sign Up
@@ -82,7 +82,7 @@ function Navbar() {
                     </div>
                     <div>
                         <Link
-                            to="signUp"
+                            to="/auth"
                             className="block px-2 py-2 my-4 ml-15 mr-15 rounded-full bg-black text-center text-white hover:scale-105 transition border-1 border-transparent
                          hover:border-white">
                             Sign Up
