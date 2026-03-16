@@ -1,7 +1,10 @@
 import { Routes, Route } from "react-router-dom";
 import Landing from "./pages/Landing";
-import Auth from "./pages/Auth";
-import CandidateD from "./pages/Candidate/CandidateD";
+import AuthPage from "./components/AuthPage";
+import Dashboard from "./pages/Candidate/Dashboard";
+
+
+
 
 function App() {
   return (
@@ -9,9 +12,9 @@ function App() {
 
       <Route path="/" element={<Landing />} />
 
-      <Route path="/auth" element={<Auth />} />
+      <Route path="/auth" element={<AuthPage />} />
 
-      <Route path="/candidate" element={<CandidateD />} />
+      <Route path="/candidate" element={<Dashboard />} />
 
     </Routes>
   );
