@@ -1,63 +1,84 @@
-import React from 'react'
-import { FaRegUser } from "react-icons/fa";
+import React from "react";
 import { MdHomeFilled } from "react-icons/md";
 import { LuUserSearch } from "react-icons/lu";
 import { LiaClipboardListSolid } from "react-icons/lia";
+import { FaRegUser } from "react-icons/fa";
+import { IoClose } from "react-icons/io5";
 
-
-
-
-
-const Sidebar = () => {
+const Sidebar = ({ open, setOpen }) => {
     return (
-        <div className='h-screen   sm:64 bg-blue-600 text-white hidden sm:flex flex-col fixed left-0 top-0'>
+        <>
+            {/* Overlay (mobile) */}
+            {open && (
+                <div
+                    className="fixed inset-0 bg-black/40 z-40 sm:hidden"
+                    onClick={() => setOpen(false)}
+                ></div>
+            )}
 
-            {/* logo and title */}
-            <div className='flex gap-2 items-center justify-center text-xl font-bold p-2 border-b border-blue-400'>
-                <FaRegUser />
-                Candidate
+            {/* Sidebar */}
+            <div
+                className={`
+        fixed top-0 left-0 h-screen w-56 sm:w-56 lg:w-64 bg-blue-600 text-white flex flex-col z-50
+        transform transition-transform duration-300
+        ${open ? "translate-x-0" : "-translate-x-full"}
+        sm:translate-x-0
+      `}
+            >
+                {/* Top (Logo + Cross) */}
+                <div className="relative flex items-center gap-3 px-9 py-4 text-xl font-bold bg-blue-500">
+
+                    <div className="flex items-center gap-2">
+                        <FaRegUser />
+                        Candidate
+                    </div>
+
+                    {/* Cross (mobile only) */}
+                    <IoClose
+                        className="text-4xl cursor-pointer sm:hidden absolute right-4"
+                        onClick={() => setOpen(false)}
+                    />
+                </div>
+
+                {/* Menu */}
+                <ul className="flex flex-col p-4 gap-2 text-lg">
+
+                    <li className="flex items-center gap-3 px-4 py-2 hover:bg-blue-500 rounded-lg cursor-pointer">
+                        <MdHomeFilled size={24} />
+                        Dashboard
+                    </li>
+
+                    <li className="flex items-center gap-3 px-4 py-2 hover:bg-blue-500 rounded-lg cursor-pointer">
+                        <LuUserSearch size={24} />
+                        Jobs
+                    </li>
+
+                    <li className="flex items-center gap-3 px-4 py-2 hover:bg-blue-500 rounded-lg cursor-pointer">
+                        <LiaClipboardListSolid size={24} />
+                        Applications
+                    </li>
+
+                    <li className="flex items-center gap-3 px-4 py-2 hover:bg-blue-500 rounded-lg cursor-pointer">
+                        <LuUserSearch size={24} />
+                        AI Interview
+                    </li>
+
+                    <li className="flex items-center gap-3 px-4 py-2 hover:bg-blue-500 rounded-lg cursor-pointer">
+                        <LiaClipboardListSolid size={24} />
+                        Profile
+                    </li>
+
+                </ul>
+
+                {/* Logout */}
+                <div className="mt-auto p-4">
+                    <button className="w-full bg-blue-500 hover:bg-blue-800 py-2 rounded-lg">
+                        Logout
+                    </button>
+                </div>
             </div>
-
-            {/* Menu */}
-            <ul className=' justify-start flex flex-col  p-4 text-lg'>
-                <li className='hover:bg-blue-500 px-2 py-2 rounded-xl cursor-pointer flex gap-2 items-center'>
-                    <MdHomeFilled className='text-xl sm:text-2xl' />
-                    Dashboard
-                </li>
-
-                <li className='hover:bg-blue-500 px-2 py-2 rounded-xl cursor-pointer flex gap-2 items-center'>
-                    <LuUserSearch className='text-xl sm:text-2xl' />
-
-
-                    Jobs
-                </li>
-
-                <li className='hover:bg-blue-500 px-2 py-2 rounded-xl cursor-pointer flex gap-2 items-center'>
-                    <LiaClipboardListSolid className='text-xl sm:text-2xl' />
-                    Applications
-                </li>
-
-                <li className='hover:bg-blue-500 px-2 py-2 rounded-xl cursor-pointer flex gap-2 items-center'>
-                    <LuUserSearch className='text-xl sm:text-2xl' />
-                    Ai interview
-                </li>
-
-                <li className='hover:bg-blue-500 px-2 py-2 rounded-xl cursor-pointer flex gap-2 items-center'>
-                    <LiaClipboardListSolid className='text-xl sm:text-2xl' />
-                    Profile
-                </li>
-
-
-            </ul>
-            {/* logout btn */}
-            <div className='mt-auto p-6'>
-                <button className='bg-blue-500 hover:bg-blue-900 p-2 rounded-xl w-full'>
-                    Logout
-                </button>
-            </div>
-
-        </div>
-    )
-}
+        </>
+    );
+};
 
 export default Sidebar;
