@@ -24,8 +24,6 @@ const Job = () => {
                             TechSoft • Mumbai
                         </p>
 
-
-
                         <div className="flex flex-col sm:flex-row sm:items-center sm:gap-2 text-gray-600 text-sm mt-1">
 
                             {/* Skills FIRST (mobile me upar) */}

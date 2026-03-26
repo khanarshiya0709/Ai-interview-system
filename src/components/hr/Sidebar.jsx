@@ -31,7 +31,7 @@ const Sidebar = ({ open, setOpen }) => {
 
                     <div className="flex items-center gap-2">
                         <FaRegUser />
-                        Candidate
+                        HR
                     </div>
 
                     {/* Cross (mobile only) */}
@@ -51,17 +51,17 @@ const Sidebar = ({ open, setOpen }) => {
 
                     <li className="flex items-center gap-3 px-4 py-2 hover:bg-blue-500 rounded-lg cursor-pointer">
                         <LuUserSearch size={24} />
-                        Jobs
+                        Recent Job
                     </li>
 
                     <li className="flex items-center gap-3 px-4 py-2 hover:bg-blue-500 rounded-lg cursor-pointer">
                         <LiaClipboardListSolid size={24} />
-                        Applications
+                        jobs details
                     </li>
 
                     <li className="flex items-center gap-3 px-4 py-2 hover:bg-blue-500 rounded-lg cursor-pointer">
                         <LuUserSearch size={24} />
-                        AI Interview
+                        Create Jobs
                     </li>
 
                     <li

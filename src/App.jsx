@@ -5,6 +5,9 @@ import Dashboard from "./pages/Candidate/Dashboard";
 import Job from "./pages/Candidate/Job";
 import JobDetails from "./pages/Candidate/JobDetails";
 import Applications from "./pages/Candidate/Applications.jsx"
+import Hrdasboard from "./pages/HR/Hrdasboard.jsx";
+import Applicants from "./pages/HR/Applicants.jsx"
+
 
 
 
@@ -24,6 +27,12 @@ function App() {
       <Route path='/job-details' element={<JobDetails />} />
 
       <Route path="/applications" element={<Applications />} />
+
+      <Route path="/hr" element={<Hrdasboard />} />
+
+      <Route path="/applicants" element={<Applicants />} />
+
+
 
     </Routes>
   );
