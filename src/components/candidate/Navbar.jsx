@@ -1,16 +1,14 @@
-import React from "react";
 import { FaSearch } from "react-icons/fa";
 import { IoNotifications } from "react-icons/io5";
 import { RxHamburgerMenu } from "react-icons/rx";
 
 const Navbar = ({ setOpen, isClick, setIsClick }) => {
     return (
-        <div className="ml-0 sm:ml-56 lg:ml-64 h-16 bg-white flex items-center justify-between px-6 shadow sticky top-0 z-30">
+        <div className="h-16 bg-white flex items-center justify-between px-6 shadow sticky top-0 z-30">
 
             {/* LEFT */}
             <div className="flex items-center gap-4">
 
-                {/* Hamburger */}
                 <RxHamburgerMenu
                     className="text-2xl cursor-pointer sm:hidden"
                     onClick={() => setOpen(true)}
@@ -39,10 +37,7 @@ const Navbar = ({ setOpen, isClick, setIsClick }) => {
                             placeholder="Search..."
                             className="bg-transparent outline-none"
                         />
-                        <button
-                            className="ml-2"
-                            onClick={() => setIsClick(false)}
-                        >
+                        <button onClick={() => setIsClick(false)}>
                             <FaSearch />
                         </button>
                     </div>
@@ -53,10 +48,8 @@ const Navbar = ({ setOpen, isClick, setIsClick }) => {
                     />
                 )}
 
-                {/* Notification */}
                 <IoNotifications className="text-2xl cursor-pointer" />
 
-                {/* Profile */}
                 <div className="flex items-center gap-2 cursor-pointer">
                     <img
                         src="https://i.pravatar.cc/40"

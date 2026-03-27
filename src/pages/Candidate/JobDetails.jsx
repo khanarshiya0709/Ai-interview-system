@@ -1,11 +1,11 @@
-import React, { useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
+import { useState } from "react";
 import { FaLocationDot } from "react-icons/fa6";
-import { useNavigate } from "react-router-dom";
-
 
 const JobDetails = () => {
 
     const navigate = useNavigate();
+    const { id } = useParams(); // 🔥 important
     const [showUpload, setShowUpload] = useState(false);
     const [file, setFile] = useState(null);
 
@@ -14,81 +14,69 @@ const JobDetails = () => {
 
             <button
                 onClick={() => navigate(-1)}
-                className="mb-4 bg-blue-500 text-white rounded-xl py-2 px-6 hover:bg-blue-800 transition">
+                className="mb-4 bg-blue-500 text-white rounded-lg px-4 py-2"
+            >
                 Back
             </button>
 
             <div className="bg-white p-6 rounded-xl shadow max-w-3xl mx-auto">
 
-                {/* Title */}
+                {/* 🔥 Dynamic ID */}
+                <p className="text-sm text-gray-400 mb-2">Job ID: {id}</p>
+
                 <h1 className="text-2xl font-bold">Java Developer</h1>
 
-                {/* Company + Location */}
                 <p className="text-gray-500 flex items-center gap-1 mt-2">
                     <FaLocationDot />
                     TechSoft • Mumbai
                 </p>
 
-                {/* Skills + Experience */}
-                <div className="flex flex-col sm:flex-row sm:items-center sm:gap-2 text-gray-600 text-sm mt-2">
+                <p className="text-gray-600 text-sm mt-2">
+                    Skills: <span className="font-medium">Java, SQL</span> • 2+ Years Experience
+                </p>
 
-                    <p>
-                        Skills: <span className="font-medium">Java, SQL</span>
-                    </p>
-
-                    <span className="hidden sm:inline">•</span>
-
-                    <p>
-                        2+ Years Experience
-                    </p>
-
-                </div>
-
-                {/* Description */}
                 <div className="mt-4">
                     <h2 className="font-semibold text-lg mb-2">Job Description</h2>
-
-                    <p className="text-gray-600 text-sm leading-6">
-                        We are looking for a skilled Java Developer who can build scalable applications.
-                        You will work with backend systems, APIs, and databases.
+                    <p className="text-gray-600 text-sm">
+                        We are looking for a skilled Java Developer to build scalable applications.
                     </p>
                 </div>
 
-                {/* Apply Button */}
-                <div>
+                {/* Apply */}
+                <div className="mt-6">
+
                     {!showUpload ? (
                         <button
                             onClick={() => setShowUpload(true)}
-                            className="mt-6 bg-blue-600 text-white px-5 py-2 rounded-lg hover:bg-blue-700 transition">
+                            className="bg-blue-600 text-white px-5 py-2 rounded-lg"
+                        >
                             Apply Your CV
                         </button>
-
                     ) : (
-                        <div>
+                        <div className="space-y-2">
+
                             <input
                                 type="file"
-                                className="block"
                                 onChange={(e) => setFile(e.target.files[0])}
                             />
+
                             {file && (
                                 <p className="text-sm text-gray-600">
                                     Selected: {file.name}
                                 </p>
                             )}
+
                             <button
-                                className="bg-green-600 text-white px-4 py-2 rounded"
                                 onClick={() => setShowUpload(false)}
-
-
+                                className="bg-green-600 text-white px-4 py-2 rounded"
                             >
                                 Upload CV
                             </button>
-                        </div>
 
+                        </div>
                     )}
 
                 </div>
-
 
             </div>
 
