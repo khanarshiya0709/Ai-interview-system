@@ -8,14 +8,13 @@ import {
     LayoutDashboard,
     HardDrive,
     Mail,
-    ArrowRight,
 } from "lucide-react";
 
 const features = [
     {
         icon: FileSearch,
         title: "AI CV Screening",
-        description: "Analyze resumes using AI and find best candidates.",
+        description: "Automatically analyze and rank resumes based on job requirements using advanced Ai algorithms.",
     },
     {
         icon: Video,
@@ -60,13 +59,13 @@ export default function Features() {
     }, []);
 
     return (
-        <section id="features" ref={sectionRef} className="py-20 bg-white">
-            <div className="max-w-6xl mx-auto px-4">
+        <section id="features" ref={sectionRef} className="py-6 bg-white">
+            <div className="max-w-5xl mx-auto px-4">
 
                 {/* HEADER */}
                 <div className={`text-center mb-16 transition-all duration-700 ${isVisible ? "opacity-100" : "opacity-0"
                     }`}>
-                    <span className="bg-blue-100 text-blue-600 px-4 py-1 rounded-full text-sm">
+                    <span className="bg-blue-100 text-blue-600 px-6 py-2 rounded-full text-sm">
                         Features
                     </span>
 
@@ -80,20 +79,23 @@ export default function Features() {
                 </div>
 
                 {/* GRID */}
-                <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div className="grid sm:grid-cols-2 lg:grid-cols-2 gap-6">
                     {features.map((feature, index) => {
                         const Icon = feature.icon;
 
                         return (
                             <div
                                 key={feature.title}
-                                className={`p-6 bg-gray-50 rounded-2xl shadow hover:shadow-lg transition ${isVisible ? "opacity-100" : "opacity-0"
+                                className={`p-6 bg-gray-90 rounded-2xl shadow hover:shadow-xl transition  group ${isVisible ? "opacity-100" : "opacity-0"
                                     }`}
                                 style={{ transitionDelay: `${index * 100}ms` }}
                             >
                                 {/* Icon */}
-                                <div className="w-14 h-14 bg-blue-100 flex items-center justify-center rounded-xl mb-4">
-                                    <Icon className="text-blue-600" size={28} />
+                                <div className="w-14 h-14 bg-blue-100 flex items-center justify-center rounded-xl mb-4 transition-all duration-300 group-hover:bg-blue-500">
+                                    <Icon
+                                        className="text-blue-600 transition-all duration-300 group-hover:text-white"
+                                        size={28}
+                                    />
                                 </div>
 
                                 {/* Title */}
@@ -106,14 +108,7 @@ export default function Features() {
                                     {feature.description}
                                 </p>
 
-                                {/* Button */}
-                                <a
-                                    href="#features"
-                                    className="text-blue-600 text-sm flex items-center gap-1 hover:gap-2 transition"
-                                >
-                                    Learn More
-                                    <ArrowRight size={14} />
-                                </a>
+
                             </div>
                         );
                     })}

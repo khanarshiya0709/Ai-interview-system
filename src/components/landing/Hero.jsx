@@ -1,71 +1,77 @@
 "use client";
 
 import { Play, ArrowRight, Sparkles, CheckCircle } from "lucide-react";
+import { Link } from "react-router-dom";
 
 export default function Hero() {
-    return (
-        <section
-            id="home"
-            className="relative min-h-screen pt-24 pb-10 overflow-hidden"
-        >
+    return (<section
+        id="home"
+        className="relative min-h-screen pt-24 pb-10 overflow-hidden w-full"
+    >
 
-            {/* 🔥 SPLINE BACKGROUND */}
-            <iframe
-                src="https://my.spline.design/nexbotrobotcharacterconcept-DwnBjWtm4SOGH4AnkWsIJll7/"
-                frameBorder="0"
-                className="absolute top-0 left-0 w-full h-full"
-            ></iframe>
 
-            {/* 🔥 DARK OVERLAY */}
-            <div className="absolute inset-0 bg-black/20"></div>
+        {/* 🔥 SPLINE BACKGROUND */}
+        <iframe
+            // src="https://my.spline.design/nexbotrobotcharacterconcept-DwnBjWtm4SOGH4AnkWsIJll7/"
+            frameBorder="0"
+            className="absolute top-0 left-0 w-full h-full pointer-events-none"
+        ></iframe>
 
-            {/* 🔥 CONTENT */}
-            <div className="relative z-10 max-w-3xl mx-auto px-4 text-center">
+        {/* 🔥 DARK OVERLAY */}
+        <div className="absolute inset-0 bg-black/20"></div>
 
-                <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/20 text-white text-sm mb-6">
-                    <Sparkles size={16} />
-                    AI-Powered Recruitment
-                </div>
+        {/* 🔥 CONTENT */}
+        <div className="relative z-10 max-w-3xl mx-auto px-4 text-center">
 
-                <h1 className="text-4xl sm:text-5xl font-bold text-white mb-6">
-                    AI Powered Smart{" "}
-                    <span className="text-blue-400">Hiring Platform</span>
-                </h1>
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/20 text-white text-sm mb-6">
+                <Sparkles size={16} />
+                AI-Powered Recruitment
+            </div>
 
-                <p className="text-gray-200 mb-8">
-                    Automate screening, conduct AI interviews, and hire smarter.
-                </p>
+            <h1 className="text-4xl sm:text-5xl font-bold text-white mb-6">
+                AI Powered Smart{" "}
+                <span className="text-blue-400">Hiring Platform</span>
+            </h1>
 
-                {/* BUTTONS */}
-                <div className="flex flex-col sm:flex-row gap-4 justify-center mb-10">
-                    <button className="bg-blue-600 text-white px-8 py-3 rounded-full flex items-center gap-2 hover:bg-blue-700">
+            <p className="text-gray-200 mb-8">
+                Automate screening, conduct AI interviews, and hire smarter.
+            </p>
+
+            {/* ✅ FIXED BUTTONS */}
+            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-10">
+
+                <Link to="/auth">
+                    <button className="bg-blue-600 text-white px-6 py-2.5 rounded-full flex items-center justify-center gap-2 hover:bg-blue-700 w-auto max-w-[200px]">
                         Get Started
                         <ArrowRight size={16} />
                     </button>
+                </Link>
 
-                    <button className="bg-white text-black px-8 py-3 rounded-full flex items-center gap-2 hover:bg-gray-200">
-                        <Play size={16} />
-                        Watch Demo
-                    </button>
-                </div>
 
-                {/* STATS */}
-                <div className="flex flex-wrap justify-center gap-6 text-sm text-gray-200">
-                    <div className="flex items-center gap-2">
-                        <CheckCircle className="text-blue-400" size={16} />
-                        90% faster hiring
-                    </div>
-                    <div className="flex items-center gap-2">
-                        <CheckCircle className="text-blue-400" size={16} />
-                        AI-driven insights
-                    </div>
-                    <div className="flex items-center gap-2">
-                        <CheckCircle className="text-blue-400" size={16} />
-                        Unbiased evaluation
-                    </div>
-                </div>
+                <button className="bg-white text-black px-6 py-2.5 rounded-full flex items-center justify-center gap-2 hover:bg-gray-200 w-auto max-w-[200px]">
+                    <Play size={16} />
+                    Watch Demo
+                </button>
 
             </div>
-        </section>
+
+            {/* STATS */}
+            <div className="flex flex-wrap justify-center gap-6 text-sm text-gray-200">
+                <div className="flex items-center gap-2">
+                    <CheckCircle className="text-blue-400" size={16} />
+                    90% faster hiring
+                </div>
+                <div className="flex items-center gap-2">
+                    <CheckCircle className="text-blue-400" size={16} />
+                    AI-driven insights
+                </div>
+                <div className="flex items-center gap-2">
+                    <CheckCircle className="text-blue-400" size={16} />
+                    Unbiased evaluation
+                </div>
+            </div>
+
+        </div>
+    </section>
     );
 }

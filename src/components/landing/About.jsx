@@ -46,8 +46,8 @@ export default function About() {
     }, []);
 
     return (
-        <section id="about" ref={sectionRef} className="py-20 lg:py-28 bg-gray-50">
-            <div className="max-w-6xl mx-auto px-4">
+        <section id="about" ref={sectionRef} className="py-12 lg:py-14 bg-gray-50">
+            <div className="max-w-5xl mx-auto px-4">
                 <div className="grid lg:grid-cols-2 gap-12 items-center">
 
                     {/* LEFT */}

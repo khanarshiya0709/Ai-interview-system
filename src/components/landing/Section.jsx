@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { ArrowRight, Sparkles } from "lucide-react";
+import { Link } from "react-router-dom";
 
 export default function CTA() {
     const [isVisible, setIsVisible] = useState(false);
@@ -19,7 +20,7 @@ export default function CTA() {
     }, []);
 
     return (
-        <section ref={sectionRef} className="py-20 bg-white">
+        <section ref={sectionRef} className="py-14 bg-white">
             <div className="max-w-6xl mx-auto px-4">
 
                 <div
@@ -47,10 +48,13 @@ export default function CTA() {
                             Transform your hiring process with AI and find the best candidates faster.
                         </p>
 
-                        <button className="bg-white text-blue-600 px-8 py-3 rounded-full flex items-center gap-2 mx-auto hover:bg-gray-200 transition">
-                            Get Started
-                            <ArrowRight size={16} />
-                        </button>
+                        <Link to="/auth">
+                            <button className="bg-white text-blue-600 px-8 py-3 rounded-full flex items-center gap-2 mx-auto hover:bg-gray-200 transition">
+                                Get Started
+                                <ArrowRight size={16} />
+                            </button>
+                        </Link>
+
 
                     </div>
                 </div>
