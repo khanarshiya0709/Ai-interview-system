@@ -1,19 +1,19 @@
 import React, { useState } from "react";
-import { FaUser, FaGoogle, FaLinkedinIn, FaBriefcase } from "react-icons/fa"; // Added FaBriefcase for Role
+import { FaUser, FaGoogle, FaLinkedinIn, FaBriefcase } from "react-icons/fa";
 import { MdEmail } from "react-icons/md";
 import { RiLockPasswordFill } from "react-icons/ri";
 import { useNavigate } from "react-router-dom";
 
 const AuthPage = () => {
     const [isLogin, setIsLogin] = useState(false);
-    const [role, setRole] = useState(""); // State for Signup Role
+    const [role, setRole] = useState("");
     const navigate = useNavigate();
 
-    const handleSignup = (e) => {
+    // Changed to async to support the DB fetch call
+    const handleSignup = async (e) => {
         e.preventDefault();
 
         const form = e.target;
-
         const username = form[0].value;
         const email = form[1].value;
         const password = form[2].value;
@@ -25,22 +25,45 @@ const AuthPage = () => {
             role,
         };
 
-        localStorage.setItem("user", JSON.stringify(userData));
+        // Debugging logs
+        console.log("Selected Role:", role);
+        console.log("Signup Data before saving:", userData);
 
-        if (role === "hr") {
-            navigate("/hr/dashboard");
-        } else {
-            navigate("/candidate/dashboard");
+        try {
+            // ✅ API call to save in Database
+            const response = await fetch("http://localhost:5000/api/auth/register", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(userData),
+            });
+
+            if (response.ok) {
+                // Also saving to localStorage for local session management
+                localStorage.setItem("user", JSON.stringify(userData));
+
+                // Redirect logic
+                if (role === "hr") {
+                    navigate("/hr/dashboard");
+                } else {
+                    navigate("/candidate/dashboard");
+                }
+            } else {
+                const errorData = await response.json();
+                alert(errorData.message || "Signup failed. Please try again.");
+            }
+        } catch (error) {
+            console.error("Error during signup:", error);
+            alert("Server error. Please make sure your backend is running on localhost:5000");
         }
-
     };
 
     const handleLogin = (e) => {
         e.preventDefault();
 
         const form = e.target;
-
-        const email = form[0].value;
+        const identifier = form[0].value; // Email or Username
         const password = form[1].value;
 
         const storedUser = JSON.parse(localStorage.getItem("user"));
@@ -50,18 +73,17 @@ const AuthPage = () => {
             return;
         }
 
-        if (email === storedUser.email && password === storedUser.password) {
+        if ((identifier === storedUser.email || identifier === storedUser.username) && password === storedUser.password) {
+            console.log("Login successful for role:", storedUser.role);
 
             if (storedUser.role === "hr") {
                 navigate("/hr/dashboard");
             } else {
                 navigate("/candidate/dashboard");
             }
-
         } else {
-            alert("Invalid email or password");
+            alert("Invalid credentials");
         }
-
     };
 
     return (

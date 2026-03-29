@@ -1,13 +1,16 @@
 import { FaLocationDot } from "react-icons/fa6";
 import { FaSearch } from "react-icons/fa";
 import { Link } from "react-router-dom";
+const user = JSON.parse(localStorage.getItem("user"));
 
 const Dashboard = () => {
+
+
     return (
         <div className="p-6 bg-gray-100 min-h-screen">
 
             <h1 className="text-2xl font-bold">
-                Welcome back, Arshiya 👋
+                Welcome back, {user?.username} 👋
             </h1>
             <p className="mb-6">Ready to explore new job opportunities?</p>
 
