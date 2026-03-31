@@ -1,5 +1,5 @@
 import { TrendingUp, TrendingDown } from 'lucide-react';
-import { Card } from '@/components/ui/card';
+import { Card } from '../ui/card';
 
 export function StatCard({ label, value, change, trend }) {
     const isUp = trend === 'up';
