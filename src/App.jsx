@@ -1,24 +1,26 @@
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 
-//public pages
+// public
 import Landing from "./pages/Landing";
 import AuthPage from "./pages/AuthPage";
 
-//layouts
+// layouts
 import CandidateLayout from "./layouts/CandidateLayout";
 import HRLayout from "./layouts/HRLayout";
 
-
-//candidate pages
+// candidate
 import Dashboard from "./pages/candidate/Dashboard";
 import Jobs from "./pages/candidate/Jobs";
 import JobDetails from "./pages/candidate/JobDetails";
-import Applications from "./pages/candidate/Applications"
+import Applications from "./pages/candidate/Applications";
 
-//hr pages
+// HR
 import HRDashboard from "./pages/hr/HRDashboard";
-import Applicants from "./pages/hr/Applicants"
-
+import Applicants from "./pages/hr/Applicants";
+import JobsHR from "./pages/hr/Jobs";
+import JobDetailsHR from "./pages/hr/JobDetails";
+import CreateJob from "./pages/hr/CreateJob";
+import Profile from "./pages/hr/Profile";
 
 function App() {
   return (
@@ -28,26 +30,28 @@ function App() {
       <Route path="/" element={<Landing />} />
       <Route path="/auth" element={<AuthPage />} />
 
-      {/* Candidate Routes */}
-      <Route path="/candidate" element={<CandidateLayout />} >
+      {/* Candidate */}
+      <Route path="/candidate" element={<CandidateLayout />}>
+        <Route index element={<Navigate to="dashboard" />} />
         <Route path="dashboard" element={<Dashboard />} />
-        <Route path='jobs' element={<Jobs />} />
-        <Route path='jobs/:id' element={<JobDetails />} />
+        <Route path="jobs" element={<Jobs />} />
+        <Route path="jobs/:id" element={<JobDetails />} />
         <Route path="applications" element={<Applications />} />
       </Route>
 
-
-      {/* HR Routes */}
+      {/* HR */}
       <Route path="/hr" element={<HRLayout />}>
-        <Route path="dashboard" element={<HRDashboard />} />
+        <Route index element={<Navigate to="dashboard" />} />
 
+        <Route path="dashboard" element={<HRDashboard />} />
+        <Route path="jobs" element={<JobsHR />} />
+        <Route path="jobs/:id" element={<JobDetailsHR />} />
+        <Route path="create-job" element={<CreateJob />} />
         <Route path="applicants" element={<Applicants />} />
+        <Route path="profile" element={<Profile />} />
       </Route>
 
     </Routes>
-
-
-
   );
 }
 

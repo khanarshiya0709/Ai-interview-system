@@ -1,77 +1,123 @@
-import React from "react";
-import { FaSearch } from "react-icons/fa";
-import { IoNotifications } from "react-icons/io5";
-import { RxHamburgerMenu } from "react-icons/rx";
+import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
+import { Search, Bell, User, Menu } from 'lucide-react';
+import { Button } from '../ui/button';
+import { Input } from '../ui/input';
+import {
+    DropdownMenu,
+    DropdownMenuContent,
+    DropdownMenuItem,
+    DropdownMenuTrigger,
+} from '../ui/dropdown-menu';
+import {
+    Drawer,
+    DrawerContent,
+    DrawerTrigger,
+    DrawerTitle,
+    DrawerDescription
+} from '../ui/drawer';
+import { Sidebar } from './Sidebar';
 
-const Navbar = ({ setOpen, isClick, setIsClick }) => {
+export function Navbar() {
+    const [open, setOpen] = useState(false);
+    const [mounted, setMounted] = useState(false);
+
+    useEffect(() => {
+        setMounted(true);
+    }, []);
+
+    if (!mounted) {
+        return (
+            <nav className="h-16 border-b border-border bg-background flex items-center justify-between px-6 gap-4">
+                <div className="md:hidden w-10" />
+
+                <div className="flex-1 max-w-sm hidden sm:block">
+                    <div className="relative">
+                        <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+                        <Input placeholder="Search candidates, jobs..." className="pl-10 bg-muted" />
+                    </div>
+                </div>
+
+                <div className="flex items-center gap-2 sm:gap-4">
+                    <Link to="/hr/create-job" className="hidden sm:block">
+                        <Button size="sm">Create Job</Button>
+                    </Link>
+
+                    <Button variant="ghost" size="icon" className="relative">
+                        <Bell className="w-5 h-5" />
+                        <span className="absolute top-2 right-2 w-2 h-2 bg-destructive rounded-full" />
+                    </Button>
+
+                    <DropdownMenu>
+                        <DropdownMenuTrigger asChild>
+                            <Button variant="ghost" size="icon">
+                                <User className="w-5 h-5" />
+                            </Button>
+                        </DropdownMenuTrigger>
+                        <DropdownMenuContent align="end">
+                            <DropdownMenuItem asChild>
+                                <Link to="/hr/profile">Profile</Link>
+                            </DropdownMenuItem>
+                            <DropdownMenuItem>Settings</DropdownMenuItem>
+                            <DropdownMenuItem>Logout</DropdownMenuItem>
+                        </DropdownMenuContent>
+                    </DropdownMenu>
+                </div>
+            </nav>
+        );
+    }
+
     return (
-        <div className="ml-0 sm:ml-56 lg:ml-64 h-16 bg-white flex items-center justify-between px-6 shadow sticky top-0 z-30">
-
-            {/* LEFT */}
-            <div className="flex items-center gap-4">
-
-                {/* Hamburger */}
-                <RxHamburgerMenu
-                    className="text-2xl cursor-pointer sm:hidden"
-                    onClick={() => setOpen(true)}
-                />
-
-                {/* Desktop Search */}
-                <div className="hidden sm:flex items-center bg-gray-100 px-3 py-2 rounded-lg w-80">
-                    <FaSearch className="mr-2 text-gray-500" />
-                    <input
-                        type="text"
-                        placeholder="Search jobs..."
-                        className="bg-transparent outline-none w-full"
-                    />
-                </div>
-
+        <nav className="h-16 border-b border-border bg-background flex items-center justify-between px-6 gap-4">
+            <div className="md:hidden">
+                <Drawer open={open} onOpenChange={setOpen}>
+                    <DrawerTrigger asChild>
+                        <Button variant="ghost" size="icon">
+                            <Menu className="w-5 h-5" />
+                        </Button>
+                    </DrawerTrigger>
+                    <DrawerContent className="h-screen w-64 p-0">
+                        <DrawerTitle className="sr-only">Navigation Menu</DrawerTitle>
+                        <DrawerDescription className="sr-only">
+                            Main navigation menu for the HR dashboard
+                        </DrawerDescription>
+                        <Sidebar />
+                    </DrawerContent>
+                </Drawer>
             </div>
 
-            {/* RIGHT */}
-            <div className="flex items-center gap-5">
-
-                {/* Mobile Search */}
-                {isClick ? (
-                    <div className="flex items-center bg-gray-100 px-3 py-1 rounded-lg sm:hidden">
-                        <input
-                            type="text"
-                            placeholder="Search..."
-                            className="bg-transparent outline-none"
-                        />
-                        <button
-                            className="ml-2"
-                            onClick={() => setIsClick(false)}
-                        >
-                            <FaSearch />
-                        </button>
-                    </div>
-                ) : (
-                    <FaSearch
-                        className="text-xl sm:hidden cursor-pointer"
-                        onClick={() => setIsClick(true)}
-                    />
-                )}
-
-                {/* Notification */}
-                <IoNotifications className="text-2xl cursor-pointer" />
-
-                {/* Profile */}
-                <div className="flex items-center gap-2 cursor-pointer">
-                    <img
-                        src="https://i.pravatar.cc/40"
-                        alt="profile"
-                        className="w-9 h-9 rounded-full"
-                    />
-                    <div className="hidden lg:block">
-                        <p className="font-medium">Arshiya</p>
-                        <p className="text-sm text-gray-500">arshiya@gmail.com</p>
-                    </div>
+            <div className="flex-1 max-w-sm hidden sm:block">
+                <div className="relative">
+                    <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+                    <Input placeholder="Search candidates, jobs..." className="pl-10 bg-muted" />
                 </div>
-
             </div>
-        </div>
+
+            <div className="flex items-center gap-2 sm:gap-4">
+                <Link to="/hr/create-job" className="hidden sm:block">
+                    <Button size="sm">Create Job</Button>
+                </Link>
+
+                <Button variant="ghost" size="icon" className="relative">
+                    <Bell className="w-5 h-5" />
+                    <span className="absolute top-2 right-2 w-2 h-2 bg-destructive rounded-full" />
+                </Button>
+
+                <DropdownMenu>
+                    <DropdownMenuTrigger asChild>
+                        <Button variant="ghost" size="icon">
+                            <User className="w-5 h-5" />
+                        </Button>
+                    </DropdownMenuTrigger>
+                    <DropdownMenuContent align="end">
+                        <DropdownMenuItem asChild>
+                            <Link to="/hr/profile">Profile</Link>
+                        </DropdownMenuItem>
+                        <DropdownMenuItem>Settings</DropdownMenuItem>
+                        <DropdownMenuItem>Logout</DropdownMenuItem>
+                    </DropdownMenuContent>
+                </DropdownMenu>
+            </div>
+        </nav>
     );
-};
-
-export default Navbar;
+}

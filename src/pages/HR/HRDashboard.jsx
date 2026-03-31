@@ -1,133 +1,57 @@
-import React from "react";
-import { FaSearch } from "react-icons/fa";
+import { StatCard } from "../../components/hr/StatCard";
+import { Card } from "../../components/ui/card";
+import { Input } from "../../components/ui/input";
+import { Button } from "../../components/ui/button";
 import { Link } from "react-router-dom";
-const user = JSON.parse(localStorage.getItem("user"));
 
 const HRDashboard = () => {
-
     return (
-        <div className="ml-59 bg-gray-100 min-h-screen">
+        <div className="space-y-6">
 
-            {/* 🔥 Welcome */}
-            <h1 className="text-2xl font-bold">
-                Welcome back, {user?.username} 👋
-            </h1>
-            <p className="mb-6">
-                Ready to explore new Job opportunities?
-            </p>
-
-            {/* 🔥 Cards */}
-            <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-4 text-white">
-
-                <div className="bg-yellow-400 p-4 rounded-xl shadow hover:scale-105 transition">
-                    <h2 className="font-bold text-xl">Total Jobs</h2>
-                    <p className="text-2xl font-bold mt-2">12</p>
-                </div>
-
-                <div className="bg-purple-400 p-4 rounded-xl shadow hover:scale-105 transition">
-                    <h2 className="font-bold text-xl">Shortlisted</h2>
-                    <p className="text-2xl font-bold mt-2">5</p>
-                </div>
-
-                <div className="bg-blue-400 p-4 rounded-xl shadow hover:scale-105 transition">
-                    <h2 className="font-bold text-xl">Rejected</h2>
-                    <p className="text-2xl font-bold mt-2">3</p>
-                </div>
-
-                <div className="bg-pink-400 p-4 rounded-xl shadow hover:scale-105 transition">
-                    <h2 className="font-bold text-xl">Interview</h2>
-                    <p className="text-2xl font-bold mt-2">2</p>
-                </div>
-
+            {/* Header */}
+            <div>
+                <h1 className="text-2xl font-bold">Dashboard</h1>
+                <p className="text-muted-foreground">
+                    Welcome back! Here's what's happening.
+                </p>
             </div>
 
-            {/* 🔥 Recent Jobs Header */}
-            <div className="mt-6 flex flex-col lg:flex-row gap-6">
+            {/* Stats */}
+            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+                <StatCard label="Total Jobs" value="12" change={10} trend="up" />
+                <StatCard label="Applications" value="50" change={5} trend="up" />
+                <StatCard label="Shortlisted" value="20" change={-2} trend="down" />
+                <StatCard label="Interviews" value="8" change={3} trend="up" />
+            </div>
 
-                <div className="w-full">
+            {/* Jobs Table */}
+            <Card className="p-6 space-y-4">
 
-                    <div className="flex justify-between items-center mb-4">
-                        <h2 className="text-xl font-semibold">Recent Jobs</h2>
+                <div className="flex justify-between items-center">
+                    <h2 className="text-lg font-semibold">Recent Jobs</h2>
 
-                        {/* 🔥 Search */}
-                        <div className="flex items-center border rounded-lg overflow-hidden w-full sm:w-72 lg:w-96 bg-white">
-                            <div className="px-3 text-blue-500">
-                                <FaSearch />
-                            </div>
-
-                            <input
-                                type="text"
-                                placeholder="Search jobs..."
-                                className="w-full py-2 outline-none"
-                            />
-
-                            <button className="bg-blue-600 text-white px-4 py-2 hover:bg-blue-800 transition">
-                                Search
-                            </button>
-                        </div>
+                    <div className="flex gap-2">
+                        <Input placeholder="Search jobs..." />
+                        <Button>Search</Button>
                     </div>
-
                 </div>
-            </div>
 
-            {/* 🔥 Table Header */}
-            <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-5 px-8 py-4 bg-white rounded-xl shadow mb-4">
-                <span>Job Title</span>
-                <span className="hidden sm:flex justify-center">Applications</span>
-                <span className="flex justify-center">Info</span>
-                <span className="hidden sm:flex justify-center">Status</span>
-                <span className="hidden lg:flex justify-center">Date</span>
-            </div>
+                {/* Row */}
+                <div className="flex justify-between border-t pt-4">
+                    <span>Java Developer</span>
+                    <Link to="/hr/jobs/1" className="text-primary">
+                        View
+                    </Link>
+                </div>
 
-            {/* 🔥 Row 1 */}
-            <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-5 px-8 py-4 bg-white rounded-xl shadow items-center mb-4">
+                <div className="flex justify-between border-t pt-4">
+                    <span>Frontend Developer</span>
+                    <Link to="/hr/jobs/2" className="text-primary">
+                        View
+                    </Link>
+                </div>
 
-                <span>Java Dev</span>
-
-                <span className="hidden sm:flex justify-center">20</span>
-
-                <Link to="/hr/applicants" className="flex justify-center text-blue-600">
-                    View
-                </Link>
-
-                <span className="hidden sm:flex justify-center text-green-600">
-                    Active
-                </span>
-
-                <span className="hidden lg:flex justify-center text-gray-500">
-                    26 March
-                </span>
-
-            </div>
-
-            {/* 🔥 Row 2 */}
-            <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-5 px-8 py-4 bg-white rounded-xl shadow items-center mb-4">
-
-                <span>Frontend Dev</span>
-
-                <span className="hidden sm:flex justify-center">15</span>
-
-                <Link to="/hr/applicants" className="flex justify-center text-blue-600">
-                    View
-                </Link>
-
-                <span className="hidden sm:flex justify-center text-green-600">
-                    Active
-                </span>
-
-                <span className="hidden lg:flex justify-center text-gray-500">
-                    25 March
-                </span>
-
-            </div>
-
-            {/* 🔥 View More */}
-            <div className="flex justify-end mt-4">
-                <button className="text-blue-600 font-medium hover:scale-105 transition bg-blue-200 px-4 py-2 rounded-xl">
-                    View More
-                </button>
-            </div>
-
+            </Card>
         </div>
     );
 };

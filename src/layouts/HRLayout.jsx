@@ -1,24 +1,23 @@
 import { Outlet } from "react-router-dom";
-import Navbar from "../components/hr/Navbar";
-import Sidebar from "../components/hr/Sidebar";
-import { useState } from "react";
+import { Navbar } from "../components/hr/Navbar";
+import { Sidebar } from "../components/hr/Sidebar";
 
 const HRLayout = () => {
-    const [open, setOpen] = useState(false);
-    const [isClick, setIsClick] = useState(false);
-
     return (
-        <div className="flex">
+        <div className="flex h-screen overflow-hidden">
 
-            <Sidebar open={open} setOpen={setOpen} />
+            {/* Sidebar - Desktop */}
+            <div className="w-64 bg-sidebar border-r border-sidebar-border hidden md:flex flex-col overflow-y-auto">
+                <Sidebar />
+            </div>
 
-            <div className="flex-1">
-                <Navbar
-                    setOpen={setOpen}
-                    isClick={isClick}
-                    setIsClick={setIsClick}
-                />
-                <Outlet />
+            {/* Main */}
+            <div className="flex-1 flex flex-col overflow-hidden">
+                <Navbar />
+
+                <main className="flex-1 overflow-y-auto bg-background p-6">
+                    <Outlet />
+                </main>
             </div>
 
         </div>
