@@ -1,12 +1,10 @@
 import { StatCard } from "../../components/hr/StatCard";
 import { Card } from "../../components/ui/card";
-import { Input } from "../../components/ui/input";
-import { Button } from "../../components/ui/button";
-import { Link } from "react-router-dom";
+import { mockJobs, mockCandidates } from "../../lib/mock-data";
 
 const HRDashboard = () => {
     return (
-        <div className="space-y-6">
+        <div className="p-6 space-y-6">
 
             {/* Header */}
             <div>
@@ -24,34 +22,78 @@ const HRDashboard = () => {
                 <StatCard label="Interviews" value="8" change={3} trend="up" />
             </div>
 
-            {/* Jobs Table */}
-            <Card className="p-6 space-y-4">
+            {/* MAIN SECTION */}
+            <div className="grid lg:grid-cols-3 gap-6">
 
-                <div className="flex justify-between items-center">
-                    <h2 className="text-lg font-semibold">Recent Jobs</h2>
+                {/* LEFT - RECENT JOBS */}
+                <div className="lg:col-span-2 space-y-4">
 
-                    <div className="flex gap-2">
-                        <Input placeholder="Search jobs..." />
-                        <Button>Search</Button>
+                    <div className="flex justify-between items-center">
+                        <h2 className="text-lg font-semibold">Recent Jobs</h2>
+                        <span className="text-sm text-muted-foreground cursor-pointer">
+                            View all →
+                        </span>
                     </div>
+
+                    {mockJobs.slice(0, 3).map((job) => (
+                        <Card key={job.id} className="p-4 flex justify-between">
+
+                            <div>
+                                <h3 className="font-semibold">{job.title}</h3>
+
+                                <p className="text-sm text-muted-foreground">
+                                    {job.department} • {job.location}
+                                </p>
+
+                                <p className="text-sm text-muted-foreground mt-2">
+                                    {job.status} • {job.applicants} apps
+                                </p>
+                            </div>
+
+                            <div className="text-right">
+                                <p className="font-semibold">{job.salary}</p>
+                                <p className="text-sm text-muted-foreground">
+                                    {job.type}
+                                </p>
+                            </div>
+
+                        </Card>
+                    ))}
+
                 </div>
 
-                {/* Row */}
-                <div className="flex justify-between border-t pt-4">
-                    <span>Java Developer</span>
-                    <Link to="/hr/jobs/1" className="text-primary">
-                        View
-                    </Link>
+                {/* RIGHT - RECENT CANDIDATES */}
+                <div className="space-y-4">
+
+                    <h2 className="text-lg font-semibold">Recent Candidates</h2>
+
+                    {mockCandidates.slice(0, 3).map((c) => (
+                        <Card key={c.id} className="p-4 flex justify-between">
+
+                            <div>
+                                <h3 className="font-semibold">{c.name}</h3>
+
+                                <p className="text-sm text-muted-foreground">
+                                    {c.position}
+                                </p>
+
+                                <p className="text-sm text-muted-foreground mt-2">
+                                    {c.status}
+                                </p>
+                            </div>
+
+                            <div className="text-right">
+                                <p className="text-sm text-muted-foreground">CV</p>
+                                <p className="font-bold">{c.cvScore || 0}%</p>
+                            </div>
+
+                        </Card>
+                    ))}
+
                 </div>
 
-                <div className="flex justify-between border-t pt-4">
-                    <span>Frontend Developer</span>
-                    <Link to="/hr/jobs/2" className="text-primary">
-                        View
-                    </Link>
-                </div>
+            </div>
 
-            </Card>
         </div>
     );
 };
