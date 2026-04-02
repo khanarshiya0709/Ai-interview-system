@@ -1,6 +1,26 @@
 @import "tailwindcss";
 
-/* Hide scrollbar */
+@theme {
+    /* Dashboard Theme Colors */
+    --color-primary: var(--color-blue-600);
+    --color-primary-hover: var(--color-blue-700);
+    --color-primary-light: var(--color-blue-50);
+
+    /* Text & Border Colors */
+    --color-text-main: var(--color-slate-900);
+    --color-text-muted: var(--color-slate-500);
+    --color-border-soft: var(--color-slate-200);
+}
+
+@layer base {
+    body {
+        /* Professional light background - No layout change */
+        @apply bg-slate-50 text-text-main;
+        overflow-x: hidden;
+    }
+}
+
+/* Scrollbar and Layout Settings (Exactly as you sent) */
 .no-scrollbar::-webkit-scrollbar {
     display: none;
 }

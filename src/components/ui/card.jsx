@@ -6,7 +6,8 @@ function Card({ className, ...props }) {
     <div
       data-slot="card"
       className={cn(
-        'bg-card text-card-foreground flex flex-col gap-6 rounded-xl border py-6 shadow-sm',
+        // Background: White, Text: Dark Gray, Border: Soft Slate
+        'bg-white text-slate-900 flex flex-col gap-6 rounded-xl border border-slate-200 py-6 shadow-sm',
         className
       )}
       {...props}
@@ -31,7 +32,8 @@ function CardTitle({ className, ...props }) {
   return (
     <div
       data-slot="card-title"
-      className={cn('leading-none font-semibold', className)}
+      // Making title a bit more prominent with Slate-900
+      className={cn('leading-none font-semibold text-slate-900', className)}
       {...props}
     />
   );
@@ -41,7 +43,8 @@ function CardDescription({ className, ...props }) {
   return (
     <div
       data-slot="card-description"
-      className={cn('text-muted-foreground text-sm', className)}
+      // Muted text using Slate-500 for a clean look
+      className={cn('text-slate-500 text-sm', className)}
       {...props}
     />
   );

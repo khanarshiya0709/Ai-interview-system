@@ -22,7 +22,8 @@ function DropdownMenuContent({ className, sideOffset = 4, ...props }) {
       <DropdownMenuPrimitive.Content
         sideOffset={sideOffset}
         className={cn(
-          'bg-popover text-popover-foreground data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 z-50 min-w-[8rem] rounded-md border p-1 shadow-md',
+          // Background: White, Border: Soft Slate, Shadow: Standard Dashboard Shadow
+          'bg-white text-slate-900 border-slate-200 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 z-50 min-w-[10rem] rounded-md border p-1 shadow-lg outline-none',
           className
         )}
         {...props}
@@ -35,7 +36,10 @@ function DropdownMenuItem({ className, ...props }) {
   return (
     <DropdownMenuPrimitive.Item
       className={cn(
-        "flex items-center gap-2 px-2 py-1.5 text-sm rounded-sm cursor-pointer hover:bg-accent",
+        // Hover/Focus: Soft Blue background with Blue text
+        "flex items-center gap-2 px-3 py-2 text-sm rounded-sm cursor-pointer outline-none transition-colors",
+        "hover:bg-blue-50 hover:text-blue-600 focus:bg-blue-50 focus:text-blue-600",
+        "data-[disabled]:pointer-events-none data-[disabled]:opacity-50",
         className
       )}
       {...props}
@@ -43,22 +47,39 @@ function DropdownMenuItem({ className, ...props }) {
   );
 }
 
-function DropdownMenuCheckboxItem({ children, checked, ...props }) {
+function DropdownMenuCheckboxItem({ className, children, checked, ...props }) {
   return (
-    <DropdownMenuPrimitive.CheckboxItem checked={checked} {...props}>
-      <span className="mr-2">
-        {checked && <CheckIcon className="w-4 h-4" />}
+    <DropdownMenuPrimitive.CheckboxItem
+      checked={checked}
+      className={cn(
+        "relative flex items-center rounded-sm py-2 pl-8 pr-2 text-sm outline-none transition-colors cursor-pointer hover:bg-blue-50 hover:text-blue-600 focus:bg-blue-50",
+        className
+      )}
+      {...props}
+    >
+      <span className="absolute left-2 flex h-3.5 w-3.5 items-center justify-center">
+        <DropdownMenuPrimitive.ItemIndicator>
+          <CheckIcon className="w-4 h-4 text-blue-600" />
+        </DropdownMenuPrimitive.ItemIndicator>
       </span>
       {children}
     </DropdownMenuPrimitive.CheckboxItem>
   );
 }
 
-function DropdownMenuRadioItem({ children, ...props }) {
+function DropdownMenuRadioItem({ className, children, ...props }) {
   return (
-    <DropdownMenuPrimitive.RadioItem {...props}>
-      <span className="mr-2">
-        <CircleIcon className="w-3 h-3" />
+    <DropdownMenuPrimitive.RadioItem
+      className={cn(
+        "relative flex items-center rounded-sm py-2 pl-8 pr-2 text-sm outline-none transition-colors cursor-pointer hover:bg-blue-50 hover:text-blue-600 focus:bg-blue-50",
+        className
+      )}
+      {...props}
+    >
+      <span className="absolute left-2 flex h-3.5 w-3.5 items-center justify-center">
+        <DropdownMenuPrimitive.ItemIndicator>
+          <CircleIcon className="w-2 h-2 fill-blue-600 text-blue-600" />
+        </DropdownMenuPrimitive.ItemIndicator>
       </span>
       {children}
     </DropdownMenuPrimitive.RadioItem>
@@ -68,7 +89,7 @@ function DropdownMenuRadioItem({ children, ...props }) {
 function DropdownMenuLabel({ className, ...props }) {
   return (
     <DropdownMenuPrimitive.Label
-      className={cn('px-2 py-1.5 text-sm font-medium', className)}
+      className={cn('px-3 py-2 text-xs font-bold uppercase tracking-wider text-slate-400', className)}
       {...props}
     />
   );
@@ -76,7 +97,7 @@ function DropdownMenuLabel({ className, ...props }) {
 
 function DropdownMenuSeparator(props) {
   return (
-    <DropdownMenuPrimitive.Separator className="h-px bg-border my-1" {...props} />
+    <DropdownMenuPrimitive.Separator className="h-px bg-slate-100 my-1" {...props} />
   );
 }
 
@@ -84,11 +105,18 @@ function DropdownMenuSub(props) {
   return <DropdownMenuPrimitive.Sub {...props} />;
 }
 
-function DropdownMenuSubTrigger({ children, ...props }) {
+function DropdownMenuSubTrigger({ className, children, ...props }) {
   return (
-    <DropdownMenuPrimitive.SubTrigger {...props}>
+    <DropdownMenuPrimitive.SubTrigger
+      className={cn(
+        "flex items-center gap-2 px-3 py-2 text-sm rounded-sm cursor-pointer outline-none",
+        "hover:bg-blue-50 hover:text-blue-600 focus:bg-blue-50 focus:text-blue-600 data-[state=open]:bg-blue-50 data-[state=open]:text-blue-600",
+        className
+      )}
+      {...props}
+    >
       {children}
-      <ChevronRightIcon className="ml-auto w-4 h-4" />
+      <ChevronRightIcon className="ml-auto w-4 h-4 text-slate-400" />
     </DropdownMenuPrimitive.SubTrigger>
   );
 }
@@ -96,7 +124,10 @@ function DropdownMenuSubTrigger({ children, ...props }) {
 function DropdownMenuSubContent({ className, ...props }) {
   return (
     <DropdownMenuPrimitive.SubContent
-      className={cn('bg-popover border rounded-md p-1 shadow-lg', className)}
+      className={cn(
+        'bg-white border-slate-200 text-slate-900 border rounded-md p-1 shadow-lg min-w-[8rem] outline-none',
+        className
+      )}
       {...props}
     />
   );
