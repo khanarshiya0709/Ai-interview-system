@@ -1,69 +1,69 @@
-import { FaSearch } from "react-icons/fa";
-import { IoNotifications } from "react-icons/io5";
-import { RxHamburgerMenu } from "react-icons/rx";
+import { useState, useEffect } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { Bell, User, Menu } from 'lucide-react';
+import { Button } from '../ui/button';
 
-const Navbar = ({ setOpen, isClick, setIsClick }) => {
+import {
+    Drawer,
+    DrawerContent,
+    DrawerTrigger,
+    DrawerTitle,
+    DrawerDescription
+} from '../ui/drawer';
+
+import Sidebar from './Sidebar';
+
+const Navbar = ({ onMenuClick }) => {
+    const [open, setOpen] = useState(false);
+    const [mounted, setMounted] = useState(false);
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        setMounted(true);
+    }, []);
+
+    if (!mounted) return <nav className="h-16 border-b border-slate-200 bg-white flex items-center justify-between px-6" />;
+
     return (
-        <div className="h-16 bg-white flex items-center justify-between px-6 shadow sticky top-0 z-30">
+        <nav className="h-16 border-b border-slate-200 bg-white flex items-center justify-between px-6">
 
-            {/* LEFT */}
-            <div className="flex items-center gap-4">
+            {/* Mobile Sidebar */}
+            <div className="md:hidden">
+                <Drawer direction="left" open={open} onOpenChange={setOpen}>
+                    <DrawerTrigger asChild>
+                        <Button variant="ghost" size="icon" className="text-slate-600 hover:text-blue-600 hover:bg-blue-50">
+                            <Menu className="w-5 h-5" />
+                        </Button>
+                    </DrawerTrigger>
 
-                <RxHamburgerMenu
-                    className="text-2xl cursor-pointer sm:hidden"
-                    onClick={() => setOpen(true)}
-                />
+                    <DrawerContent className="h-screen w-60 p-0 rounded-none border-r border-slate-200 bg-white shadow-xl">
+                        <DrawerTitle className="sr-only">Navigation Menu</DrawerTitle>
+                        <DrawerDescription className="sr-only">Main navigation</DrawerDescription>
 
-                {/* Desktop Search */}
-                <div className="hidden sm:flex items-center bg-gray-100 px-3 py-2 rounded-lg w-80">
-                    <FaSearch className="mr-2 text-gray-500" />
-                    <input
-                        type="text"
-                        placeholder="Search jobs..."
-                        className="bg-transparent outline-none w-full"
-                    />
-                </div>
-
+                        <Sidebar onClose={() => setOpen(false)} />
+                    </DrawerContent>
+                </Drawer>
             </div>
 
-            {/* RIGHT */}
-            <div className="flex items-center gap-5">
+            {/* Right Section */}
+            <div className="flex items-center gap-4 ml-auto">
 
-                {/* Mobile Search */}
-                {isClick ? (
-                    <div className="flex items-center bg-gray-100 px-3 py-1 rounded-lg sm:hidden">
-                        <input
-                            type="text"
-                            placeholder="Search..."
-                            className="bg-transparent outline-none"
-                        />
-                        <button onClick={() => setIsClick(false)}>
-                            <FaSearch />
-                        </button>
-                    </div>
-                ) : (
-                    <FaSearch
-                        className="text-xl sm:hidden cursor-pointer"
-                        onClick={() => setIsClick(true)}
-                    />
-                )}
+                <Button variant="ghost" size="icon" className="relative text-slate-600 hover:text-blue-600 hover:bg-blue-50">
+                    <Bell className="w-5 h-5" />
+                    <span className="absolute top-2 right-2 w-2 h-2 bg-blue-600 rounded-full border-2 border-white" />
+                </Button>
 
-                <IoNotifications className="text-2xl cursor-pointer" />
-
-                <div className="flex items-center gap-2 cursor-pointer">
-                    <img
-                        src="https://i.pravatar.cc/40"
-                        alt="profile"
-                        className="w-9 h-9 rounded-full"
-                    />
-                    <div className="hidden lg:block">
-                        <p className="font-medium">Arshiya</p>
-                        <p className="text-sm text-gray-500">arshiya@gmail.com</p>
-                    </div>
-                </div>
-
+                <Button
+                    variant="ghost"
+                    size="icon"
+                    className="text-slate-600 hover:text-blue-600 hover:bg-blue-50"
+                    // ✅ FIX: Path corrected to /candidate/profile
+                    onClick={() => navigate("/candidate/profile")}
+                >
+                    <User className="w-5 h-5" />
+                </Button>
             </div>
-        </div>
+        </nav>
     );
 };
 

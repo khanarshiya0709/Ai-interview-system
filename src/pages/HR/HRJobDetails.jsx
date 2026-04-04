@@ -6,7 +6,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '../../components/ui/ta
 import { mockJobs, mockCandidates } from '../../lib/mock-data';
 import { ChevronLeft, Download, Phone, Mail } from 'lucide-react';
 
-const JobDetails = () => {
+const HRJobDetails = () => {
     const { id } = useParams();
 
     const job = mockJobs.find((j) => j.id === id) || mockJobs[0];
@@ -29,6 +29,7 @@ const JobDetails = () => {
             {/* Header */}
             <div className="flex flex-col sm:flex-row sm:justify-between gap-4">
                 <div>
+                    {/* ✅ Path verified: Correct for HRJobs.jsx */}
                     <Link to="/hr/jobs">
                         <Button
                             variant="ghost"
@@ -194,4 +195,4 @@ const JobDetails = () => {
     );
 };
 
-export default JobDetails;
+export default HRJobDetails;

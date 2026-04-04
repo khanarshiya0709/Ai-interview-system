@@ -17,8 +17,7 @@ const Applicants = () => {
             <div>
                 <Button
                     variant="ghost"
-                    onClick={() => navigate(-1)}
-                    // Custom hover to match our blue theme
+                    onClick={() => navigate(-1)} // ✅ Correct: Goes back to previous HR page (likely HRJobs)
                     className="mb-4 text-slate-600 hover:text-blue-600 hover:bg-blue-50"
                 >
                     ← Back
@@ -33,17 +32,16 @@ const Applicants = () => {
                 </p>
             </div>
 
-            {/* Applicants List */}
+            {/* List */}
             <div className="space-y-4">
-                {applicants.map((user, i) => (
+                {applicants.map((user) => (
                     <Card
-                        key={i}
-                        // Added border-slate-200 for consistent theme
+                        key={user.email}
                         className="p-4 flex items-center justify-between bg-white border-slate-200 shadow-sm"
                     >
                         <div className="flex items-center gap-4">
                             <img
-                                src={`https://i.pravatar.cc/150?img=${i + 1}`}
+                                src={`https://i.pravatar.cc/150?u=${user.email}`}
                                 className="w-10 h-10 rounded-full border border-slate-100"
                                 alt="user"
                             />
@@ -59,13 +57,19 @@ const Applicants = () => {
                         </div>
 
                         <div className="flex gap-2">
-                            {/* Outline variant will use the blue-tint we set in Button.jsx */}
-                            <Button variant="outline" size="sm">
+                            <Button
+                                variant="outline"
+                                size="sm"
+                                onClick={() => alert("View Profile")}
+                            >
                                 View
                             </Button>
 
-                            {/* Default variant will use bg-blue-600 */}
-                            <Button size="sm" className="bg-blue-600 hover:bg-blue-700 text-white">
+                            <Button
+                                size="sm"
+                                className="bg-blue-600 hover:bg-blue-700 text-white"
+                                onClick={() => alert("Show Result")}
+                            >
                                 Result
                             </Button>
                         </div>

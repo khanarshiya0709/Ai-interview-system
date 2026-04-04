@@ -1,30 +1,25 @@
 import { Outlet } from "react-router-dom";
 import Navbar from "../components/candidate/Navbar";
 import Sidebar from "../components/candidate/Sidebar";
-import { useState } from "react";
 
 const CandidateLayout = () => {
-    const [open, setOpen] = useState(false);
-    const [isClick, setIsClick] = useState(false);
-
     return (
-        // Added min-h-screen and bg-slate-50 to maintain the SaaS dashboard theme
-        <div className="flex min-h-screen bg-slate-50">
+        <div className="flex h-screen overflow-hidden">
 
-            <Sidebar open={open} setOpen={setOpen} />
-
-            {/* Main content area */}
-            <div className="flex-1">
-                <Navbar
-                    setOpen={setOpen}
-                    isClick={isClick}
-                    setIsClick={setIsClick}
-                />
-
-                {/* Outlet will render candidate pages here */}
-                <Outlet />
+            {/* Sidebar - Desktop */}
+            <div className="w-64 bg-white border-r border-slate-200 hidden md:flex flex-col overflow-y-auto">
+                <Sidebar />
             </div>
 
+            {/* Main Content Area */}
+            <div className="flex-1 flex flex-col overflow-hidden">
+                <Navbar />
+
+                <main className="flex-1 overflow-y-auto bg-slate-50">
+                    {/* Nested candidate routes will render here */}
+                    <Outlet />
+                </main>
+            </div>
         </div>
     );
 };

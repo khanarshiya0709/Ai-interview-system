@@ -1,90 +1,116 @@
-import { FaLocationDot } from "react-icons/fa6";
-import { FaSearch } from "react-icons/fa";
-import { Link } from "react-router-dom";
-const user = JSON.parse(localStorage.getItem("user"));
+import { mockCandidates } from "../../lib/candidate-mock-data";
 
 const Dashboard = () => {
+    const stats = [
+        { label: "Pending", value: 3 },
+        { label: "Rejected", value: 2 },
+        { label: "Completed", value: 5 },
+        { label: "Approved", value: 4 },
+    ];
 
+    const applications = [
+        {
+            title: "Senior React Developer",
+            company: "TechCorp Inc",
+            date: "2024-03-15",
+            status: "Approved",
+            score: 88,
+        },
+        {
+            title: "Full Stack Engineer",
+            company: "StartupXYZ",
+            date: "2024-03-10",
+            status: "Pending",
+            score: 75,
+        },
+        {
+            title: "Frontend Specialist",
+            company: "DesignStudio",
+            date: "2024-03-05",
+            status: "Rejected",
+            score: 62,
+        },
+        {
+            title: "JavaScript Developer",
+            company: "WebAgency Pro",
+            date: "2024-03-01",
+            status: "Completed",
+            score: 82,
+        },
+        {
+            title: "NodeJS Backend Dev",
+            company: "CloudServices Ltd",
+            date: "2024-02-28",
+            status: "Approved",
+            score: 85,
+        },
+        {
+            title: "React Native Dev",
+            company: "MobileFirst Studios",
+            date: "2024-02-25",
+            status: "Pending",
+            score: 78,
+        },
+    ];
 
     return (
-        <div className="p-6 bg-gray-100 min-h-screen">
+        <div className="p-4 md:p-6 space-y-6">
 
-            <h1 className="text-2xl font-bold">
-                Welcome back, {user?.username} 👋
-            </h1>
-            <p className="mb-6">Ready to explore new job opportunities?</p>
-
-            {/* Stats */}
-            <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 text-white">
-
-                <div className="bg-yellow-400 p-4 rounded-xl">
-                    <h2 className="font-bold">Pending</h2>
-                    <p className="text-xl mt-2">12</p>
-                </div>
-
-                <div className="bg-purple-400 p-4 rounded-xl">
-                    <h2 className="font-bold">Shortlisted</h2>
-                    <p className="text-xl mt-2">5</p>
-                </div>
-
-                <div className="bg-blue-400 p-4 rounded-xl">
-                    <h2 className="font-bold">Rejected</h2>
-                    <p className="text-xl mt-2">3</p>
-                </div>
-
-                <div className="bg-pink-400 p-4 rounded-xl">
-                    <h2 className="font-bold">Completed</h2>
-                    <p className="text-xl mt-2">2</p>
-                </div>
-
+            {/* Welcome */}
+            <div>
+                <h1 className="text-2xl font-bold">
+                    Welcome, Alex Johnson! 👋
+                </h1>
+                <p className="text-gray-500">
+                    Here's your job search progress and application status.
+                </p>
             </div>
 
-            {/* Jobs */}
-            <div className="mt-6">
-
-                <div className="flex justify-between items-center mb-4">
-                    <h2 className="text-xl font-semibold">Find Jobs</h2>
-
-                    <div className="flex items-center bg-white rounded-lg px-3">
-                        <FaSearch />
-                        <input
-                            type="text"
-                            placeholder="Search jobs..."
-                            className="ml-2 py-2 outline-none"
-                        />
+            {/* Stats */}
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                {stats.map((item, i) => (
+                    <div key={i} className="bg-white rounded-xl shadow p-4">
+                        <p className="text-gray-500">{item.label}</p>
+                        <h2 className="text-2xl font-bold">{item.value}</h2>
                     </div>
+                ))}
+            </div>
+
+            {/* Applications */}
+            <div>
+                <h2 className="text-xl font-semibold">Application History</h2>
+                <p className="text-gray-500 text-sm mb-4">
+                    Track your recent job applications and their status
+                </p>
+
+                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    {applications.map((job, i) => (
+                        <div key={i} className="bg-white rounded-xl shadow p-4 space-y-2">
+
+                            <div className="flex justify-between">
+                                <h3 className="font-semibold">{job.title}</h3>
+                                <span
+                                    className={`text-xs px-2 py-1 rounded-full
+                  ${job.status === "Approved" && "bg-green-100 text-green-600"}
+                  ${job.status === "Pending" && "bg-yellow-100 text-yellow-600"}
+                  ${job.status === "Rejected" && "bg-red-100 text-red-600"}
+                  ${job.status === "Completed" && "bg-blue-100 text-blue-600"}
+                  `}
+                                >
+                                    {job.status}
+                                </span>
+                            </div>
+
+                            <p className="text-sm text-gray-500">{job.company}</p>
+
+                            <div className="flex justify-between text-sm text-gray-400">
+                                <span>{job.date}</span>
+                                <span>CV Score: <b>{job.score}%</b></span>
+                            </div>
+
+                        </div>
+                    ))}
                 </div>
-
-                {/* Job Card */}
-                <div className="bg-white p-4 rounded-xl shadow flex justify-between items-center">
-
-                    <div>
-                        <h4 className="font-bold">Java Developer</h4>
-
-                        <p className="text-gray-500 flex items-center gap-1">
-                            <FaLocationDot /> TechSoft • Mumbai
-                        </p>
-
-                        <p className="text-sm text-gray-600">
-                            Java, SQL • 2+ Years
-                        </p>
-                    </div>
-
-                    <Link
-                        to="/candidate/jobs/1"
-                        className="bg-blue-600 text-white px-4 py-2 rounded-lg"
-                    >
-                        View
-                    </Link>
-
-                </div>
-
-                <div className="mt-4 text-right">
-                    <Link to="/candidate/jobs" className="text-blue-600">
-                        View More
-                    </Link>
-                </div>
-
             </div>
 
         </div>

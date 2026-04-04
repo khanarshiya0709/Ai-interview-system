@@ -50,7 +50,6 @@ export default function ProfilePage() {
 
                 {/* Header Section */}
                 <div className="relative">
-                    {/* Background Gradient: Professional Blue Tint */}
                     <div className="absolute inset-0 h-32 bg-gradient-to-r from-blue-100/50 via-blue-50/30 to-transparent rounded-lg border border-blue-100/20" />
 
                     <div className="relative flex flex-col sm:flex-row justify-between gap-6 px-2">
@@ -60,6 +59,7 @@ export default function ProfilePage() {
                                 <img
                                     src={isEditing ? formData.avatar : profile.avatar}
                                     className="w-24 h-24 sm:w-32 sm:h-32 rounded-2xl object-cover border-4 border-white shadow-xl"
+                                    alt="Profile"
                                 />
                                 {isEditing && (
                                     <div className="flex items-center gap-2">
@@ -230,6 +230,7 @@ export default function ProfilePage() {
 
                         <div className="flex justify-end gap-3 mt-4">
                             <AlertDialogCancel className="border-slate-200 text-slate-600 hover:bg-slate-50">Cancel</AlertDialogCancel>
+                            {/* Action is handled by your auth logic */}
                             <AlertDialogAction className="bg-red-600 hover:bg-red-700 text-white">Logout</AlertDialogAction>
                         </div>
                     </AlertDialogContent>

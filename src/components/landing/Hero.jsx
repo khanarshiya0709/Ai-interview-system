@@ -4,74 +4,76 @@ import { Play, ArrowRight, Sparkles, CheckCircle } from "lucide-react";
 import { Link } from "react-router-dom";
 
 export default function Hero() {
-    return (<section
-        id="home"
-        className="relative min-h-screen pt-24 pb-10 overflow-hidden w-full"
-    >
-
-
-        {/* 🔥 SPLINE BACKGROUND */}
-        <iframe
-            // src="https://my.spline.design/nexbotrobotcharacterconcept-DwnBjWtm4SOGH4AnkWsIJll7/"
-            frameBorder="0"
-            className="absolute top-0 left-0 w-full h-full pointer-events-none"
-        ></iframe>
-
-        {/* 🔥 DARK OVERLAY */}
-        <div className="absolute inset-0 bg-black/20"></div>
-
-        {/* 🔥 CONTENT */}
-        <div className="relative z-10 max-w-3xl mx-auto px-4 text-center">
-
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/20 text-white text-sm mb-6">
-                <Sparkles size={16} />
-                AI-Powered Recruitment
+    return (
+        <section
+            id="home"
+            className="relative min-h-screen pt-24 pb-10 overflow-hidden w-full"
+        >
+            {/* 🔥 SPLINE BACKGROUND - Robot ko upar shift kiya hai */}
+            <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
+                <iframe
+                    // src="https://my.spline.design/nexbotrobotcharacterconcept-DwnBjWtm4SOGH4AnkWsIJll7/"
+                    frameBorder="0"
+                    // h-[120%] aur -top-[10%] se robot upar chala jayega
+                    className="absolute w-full h-[120%] -top-[10%] left-0"
+                ></iframe>
             </div>
 
-            <h1 className="text-4xl sm:text-5xl font-bold text-white mb-6">
-                AI Powered Smart{" "}
-                <span className="text-blue-400">Hiring Platform</span>
-            </h1>
+            {/* 🔥 DARK OVERLAY */}
+            <div className="absolute inset-0 bg-black/20"></div>
 
-            <p className="text-gray-200 mb-8">
-                Automate screening, conduct AI interviews, and hire smarter.
-            </p>
+            {/* 🔥 CONTENT */}
+            <div className="relative z-10 max-w-3xl mx-auto px-4 text-center">
 
-            {/* ✅ FIXED BUTTONS */}
-            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-10">
+                <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/20 text-white text-sm mb-6">
+                    <Sparkles size={16} />
+                    AI-Powered Recruitment
+                </div>
 
-                <Link to="/auth">
-                    <button className="bg-blue-600 text-white px-6 py-2.5 rounded-full flex items-center justify-center gap-2 hover:bg-blue-700 w-auto max-w-[200px]">
-                        Get Started
-                        <ArrowRight size={16} />
+                <h1 className="text-4xl sm:text-5xl font-bold text-white mb-6">
+                    AI Powered Smart{" "}
+                    <span className="text-blue-400">Hiring Platform</span>
+                </h1>
+
+                <p className="text-gray-200 mb-8">
+                    Automate screening, conduct AI interviews, and hire smarter.
+                </p>
+
+                {/* ✅ FIXED BUTTONS */}
+                <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-10">
+
+                    <Link to="/auth">
+                        <button className="bg-blue-600 text-white px-6 py-2.5 rounded-full flex items-center justify-center gap-2 hover:bg-blue-700 w-auto max-w-[200px]">
+                            Get Started
+                            <ArrowRight size={16} />
+                        </button>
+                    </Link>
+
+
+                    <button className="bg-white text-black px-6 py-2.5 rounded-full flex items-center justify-center gap-2 hover:bg-gray-200 w-auto max-w-[200px]">
+                        <Play size={16} />
+                        Watch Demo
                     </button>
-                </Link>
 
+                </div>
 
-                <button className="bg-white text-black px-6 py-2.5 rounded-full flex items-center justify-center gap-2 hover:bg-gray-200 w-auto max-w-[200px]">
-                    <Play size={16} />
-                    Watch Demo
-                </button>
+                {/* STATS */}
+                <div className="flex flex-wrap justify-center gap-6 text-sm text-gray-200">
+                    <div className="flex items-center gap-2">
+                        <CheckCircle className="text-blue-400" size={16} />
+                        90% faster hiring
+                    </div>
+                    <div className="flex items-center gap-2">
+                        <CheckCircle className="text-blue-400" size={16} />
+                        AI-driven insights
+                    </div>
+                    <div className="flex items-center gap-2">
+                        <CheckCircle className="text-blue-400" size={16} />
+                        Unbiased evaluation
+                    </div>
+                </div>
 
             </div>
-
-            {/* STATS */}
-            <div className="flex flex-wrap justify-center gap-6 text-sm text-gray-200">
-                <div className="flex items-center gap-2">
-                    <CheckCircle className="text-blue-400" size={16} />
-                    90% faster hiring
-                </div>
-                <div className="flex items-center gap-2">
-                    <CheckCircle className="text-blue-400" size={16} />
-                    AI-driven insights
-                </div>
-                <div className="flex items-center gap-2">
-                    <CheckCircle className="text-blue-400" size={16} />
-                    Unbiased evaluation
-                </div>
-            </div>
-
-        </div>
-    </section>
+        </section>
     );
 }

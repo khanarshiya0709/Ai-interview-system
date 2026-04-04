@@ -1,6 +1,7 @@
 import { Outlet } from "react-router-dom";
-import { Navbar } from "../components/hr/Navbar";
-import { Sidebar } from "../components/hr/Sidebar";
+// ✅ Fixed: Importing as default to match your Navbar.jsx and Sidebar.jsx files
+import Navbar from "../components/hr/Navbar";
+import Sidebar from "../components/hr/Sidebar";
 
 const HRLayout = () => {
     return (
@@ -11,11 +12,12 @@ const HRLayout = () => {
                 <Sidebar />
             </div>
 
-            {/* Main */}
+            {/* Main Content Area */}
             <div className="flex-1 flex flex-col overflow-hidden">
                 <Navbar />
 
                 <main className="flex-1 overflow-y-auto bg-background p-6">
+                    {/* Routes will be rendered here */}
                     <Outlet />
                 </main>
             </div>

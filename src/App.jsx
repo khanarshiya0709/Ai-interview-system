@@ -9,46 +9,53 @@ import CandidateLayout from "./layouts/CandidateLayout";
 import HRLayout from "./layouts/HRLayout";
 
 // candidate
+import CandidateProfile from "./pages/candidate/CandidateProfile";
 import Dashboard from "./pages/candidate/Dashboard";
-import Jobs from "./pages/candidate/Jobs";
-import JobDetails from "./pages/candidate/JobDetails";
-import Applications from "./pages/candidate/Applications";
+import CandidateJobs from "./pages/candidate/CandidateJobs";
+import CandidateJobDetails from "./pages/candidate/CandidateJobDetails";
+import Interview from "./pages/candidate/Interview";
+import InterviewScreen from "./pages/candidate/InterviewScreen";
+
+
 
 // HR
 import HRDashboard from "./pages/hr/HRDashboard";
 import Applicants from "./pages/hr/Applicants";
-import JobsHR from "./pages/hr/Jobs";
-import JobDetailsHR from "./pages/hr/JobDetails";
+import HRJobs from "./pages/hr/HRJobs";
+import HRJobDetails from "./pages/hr/HRJobDetails";
 import CreateJob from "./pages/hr/CreateJob";
-import Profile from "./pages/hr/Profile";
+import HRProfile from "./pages/hr/HRProfile";
 
 function App() {
   return (
     <Routes>
 
-      {/* Public */}
+      {/* Public Routes */}
       <Route path="/" element={<Landing />} />
       <Route path="/auth" element={<AuthPage />} />
 
-      {/* Candidate */}
+      {/* Candidate Section */}
       <Route path="/candidate" element={<CandidateLayout />}>
-        <Route index element={<Navigate to="dashboard" />} />
+        <Route index element={<Navigate to="dashboard" replace />} />
+
         <Route path="dashboard" element={<Dashboard />} />
-        <Route path="jobs" element={<Jobs />} />
-        <Route path="jobs/:id" element={<JobDetails />} />
-        <Route path="applications" element={<Applications />} />
+        <Route path="profile" element={<CandidateProfile />} />
+        <Route path="jobs" element={<CandidateJobs />} />
+        <Route path="jobs/:id" element={<CandidateJobDetails />} />
+        <Route path="interview" element={<Interview />} />
+        <Route path="interview/start" element={<InterviewScreen />} />
       </Route>
 
-      {/* HR */}
+      {/* HR Section */}
       <Route path="/hr" element={<HRLayout />}>
-        <Route index element={<Navigate to="dashboard" />} />
+        <Route index element={<Navigate to="dashboard" replace />} />
 
         <Route path="dashboard" element={<HRDashboard />} />
-        <Route path="jobs" element={<JobsHR />} />
-        <Route path="jobs/:id" element={<JobDetailsHR />} />
+        <Route path="jobs" element={<HRJobs />} />
+        <Route path="jobs/:id" element={<HRJobDetails />} />
         <Route path="create-job" element={<CreateJob />} />
         <Route path="applicants" element={<Applicants />} />
-        <Route path="profile" element={<Profile />} />
+        <Route path="profile" element={<HRProfile />} />
       </Route>
 
     </Routes>

@@ -21,7 +21,7 @@ const HRDashboard = () => {
                 </p>
             </div>
 
-            {/* Stats - Grid structure is untouched */}
+            {/* Stats */}
             <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
                 <StatCard label="Total Jobs" value="12" />
                 <StatCard label="Applications" value="50" />
@@ -37,6 +37,7 @@ const HRDashboard = () => {
 
                     <div className="flex justify-between items-center">
                         <h2 className="text-lg font-semibold text-slate-900">Recent Jobs</h2>
+                        {/* ✅ Path verified: Matches /hr/jobs for HRJobs.jsx */}
                         <Link
                             to="/hr/jobs"
                             className="text-sm text-blue-600 font-medium cursor-pointer flex gap-2 items-center mr-2 hover:text-blue-700 transition-colors"
